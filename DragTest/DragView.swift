@@ -78,10 +78,10 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
         // tableView가 아래로 스크롤되면 DragView의 높이를 조정합니다.
         if scrollView.contentOffset.y < 0 {
             let yOffset = abs(scrollView.contentOffset.y)
-            heightConstraint?.update(offset: 400 - yOffset)
+            heightConstraint?.update(offset: 600 - yOffset)
             scrollView.contentOffset.y = 0
-        } else if let height = heightConstraint?.layoutConstraints.first?.constant, height < 400 {
-            // DragView의 높이가 400보다 작으면 tableView의 스크롤 업을 방지합니다.
+        } else if let height = heightConstraint?.layoutConstraints.first?.constant, height < 600 {
+            // DragView의 높이가 600보다 작으면 tableView의 스크롤 업을 방지합니다.
             scrollView.contentOffset.y = 0
         }
     }
@@ -89,43 +89,23 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     func scrollViewDidScrollggg(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < 0 {
             let yOffset = abs(scrollView.contentOffset.y)
-            heightConstraint?.update(offset: 400 - yOffset)
+            heightConstraint?.update(offset: 600 - yOffset)
             scrollView.contentOffset.y = 0
         }
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if heightConstraint?.layoutConstraints.first?.constant != 400 {
+        if heightConstraint?.layoutConstraints.first?.constant != 600 {
             scrollView.isScrollEnabled = false
         } else {
             scrollView.isScrollEnabled = true
         }
     }
 
-    func scrollViewDidScroll1(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        
-        if yOffset <= 0 {
-            if self.frame.height < 400 || lastContentOffset < yOffset {
-                scrollView.isScrollEnabled = false
-                let diff = lastContentOffset - yOffset
-                var newHeight = self.frame.height + diff
-                newHeight = max(min(newHeight, 400), 0)
-                print("newHeight: \(newHeight)")
-                heightConstraint?.update(offset: newHeight)
-                layoutIfNeeded()
-            }
-        } else {
-            scrollView.isScrollEnabled = true
-        }
-
-        lastContentOffset = yOffset
-    }
-    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if self.frame.height >= 200 {
+        if self.frame.height >= 300 {
             UIView.animate(withDuration: 0.3, animations: {
-                self.heightConstraint?.update(offset: 400)
+                self.heightConstraint?.update(offset: 600)
                 self.layoutIfNeeded()
             }) { _ in
                 scrollView.isScrollEnabled = true
@@ -139,7 +119,7 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     }
     
     func show() {
-        heightConstraint?.update(offset: 400)
+        heightConstraint?.update(offset: 600)
     }
 
     func hide() {
@@ -155,22 +135,22 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
         case .changed:
             let dy = touchPoint.y - initialTouchPoint.y
-            var newHeight = 400 - dy // 여기를 수정
-            newHeight = max(min(newHeight, 400), 0)
+            var newHeight = 600 - dy // 여기를 수정
+            newHeight = max(min(newHeight, 600), 0)
             heightConstraint?.update(offset: newHeight)
             layoutIfNeeded()
 
         case .ended, .cancelled:
             let swipeVelocity = recognizer.velocity(in: self).y
             print("swipeVelocity", swipeVelocity)
-                    let thresholdVelocity: CGFloat = 200.0
+                    let thresholdVelocity: CGFloat = 300.0
 
                     if abs(swipeVelocity) > thresholdVelocity {
                         // 사용자가 빠르게 스와이프했습니다.
                         if swipeVelocity < 0 {
                             // 스와이프 업
                             UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 400)
+                                self.heightConstraint?.update(offset: 600)
                                 self.layoutIfNeeded()
                             }
                         } else {
@@ -181,9 +161,9 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
                             }
                         }
                     } else {
-                        if self.frame.height >= 200 {
+                        if self.frame.height >= 300 {
                             UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 400)
+                                self.heightConstraint?.update(offset: 600)
                                 self.layoutIfNeeded()
                             }
                         } else {
@@ -201,18 +181,43 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     @objc private func handleTableViewPan(_ recognizer: UIPanGestureRecognizer) {
         if tableView.contentOffset.y <= 0 {
             let translation = recognizer.translation(in: self)
+            let velocity = recognizer.velocity(in: self).y
+            
             switch recognizer.state {
             case .changed:
                 if translation.y > 0 {  // Only slide down
-                    let newHeight = 400 - translation.y
+                    let newHeight = 600 - translation.y
                     heightConstraint?.update(offset: newHeight)
                 }
             case .ended, .cancelled:
-                if let heightConstraint = heightConstraint {
-                    if heightConstraint.layoutConstraints.first?.constant ?? 0 < 200 {
-                        self.hide()
+                let thresholdVelocity: CGFloat = 300.0 // 임계 속도값
+                print("velocity", velocity)
+                if abs(velocity) > thresholdVelocity { // 빠르게 swipe down
+                    if velocity < 0 {
+                        // 스와이프 업
+                        UIView.animate(withDuration: 0.3) {
+                            self.heightConstraint?.update(offset: 600)
+                            self.layoutIfNeeded()
+                        }
                     } else {
-                        self.show()
+                        // 스와이프 다운
+                        UIView.animate(withDuration: 0.3) {
+                            self.heightConstraint?.update(offset: 0)
+                            self.layoutIfNeeded()
+                        }
+                    }
+                }
+               else if let heightConstraint = heightConstraint {
+                    if heightConstraint.layoutConstraints.first?.constant ?? 0 < 300 {
+                            UIView.animate(withDuration: 0.3) {
+                                self.heightConstraint?.update(offset: 0)
+                                self.layoutIfNeeded()
+                            }
+                    } else {
+                        UIView.animate(withDuration: 0.3) {
+                            self.heightConstraint?.update(offset: 600)
+                            self.layoutIfNeeded()
+                        }
                     }
                 }
             default:
@@ -220,6 +225,7 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
             }
         }
     }
+    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGesture = gestureRecognizer as? UIPanGestureRecognizer {
             let velocity = panGesture.velocity(in: tableView)

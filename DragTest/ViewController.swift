@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         
         @objc private func showDragView() {
             UIView.animate(withDuration: 0.3) {
-                self.dragView.heightConstraint?.update(offset: 400)
+                self.dragView.heightConstraint?.update(offset: 600)
                 self.view.layoutIfNeeded()
             }
         }
