@@ -1,0 +1,6 @@
+framework module Pods_DragTest {
+  umbrella header "Pods-DragTest-umbrella.h"
+
+  export *
+  module * { export * }
+}

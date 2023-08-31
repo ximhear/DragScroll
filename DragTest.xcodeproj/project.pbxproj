@@ -7,15 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63B76C4E4B2F31E6ECFAB0AF /* Pods_DragTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08298999F1469575C08532ED /* Pods_DragTest.framework */; };
 		EC9FC4A12AA11A03002E8625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4A02AA11A03002E8625 /* AppDelegate.swift */; };
 		EC9FC4A32AA11A03002E8625 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4A22AA11A03002E8625 /* SceneDelegate.swift */; };
 		EC9FC4A52AA11A03002E8625 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4A42AA11A03002E8625 /* ViewController.swift */; };
 		EC9FC4A82AA11A03002E8625 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9FC4A62AA11A03002E8625 /* Main.storyboard */; };
 		EC9FC4AA2AA11A04002E8625 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC9FC4A92AA11A04002E8625 /* Assets.xcassets */; };
 		EC9FC4AD2AA11A04002E8625 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC9FC4AB2AA11A04002E8625 /* LaunchScreen.storyboard */; };
+		EC9FC4B52AA11A22002E8625 /* DragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4B42AA11A22002E8625 /* DragView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08298999F1469575C08532ED /* Pods_DragTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B7538DE4B921012FDC7618E /* Pods-DragTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTest.release.xcconfig"; path = "Target Support Files/Pods-DragTest/Pods-DragTest.release.xcconfig"; sourceTree = "<group>"; };
+		423FB0180040EBECF26ACF3D /* Pods-DragTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTest.debug.xcconfig"; path = "Target Support Files/Pods-DragTest/Pods-DragTest.debug.xcconfig"; sourceTree = "<group>"; };
 		EC9FC49D2AA11A03002E8625 /* DragTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9FC4A02AA11A03002E8625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC9FC4A22AA11A03002E8625 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +29,7 @@
 		EC9FC4A92AA11A04002E8625 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC9FC4AC2AA11A04002E8625 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC9FC4AE2AA11A04002E8625 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC9FC4B42AA11A22002E8625 /* DragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +37,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63B76C4E4B2F31E6ECFAB0AF /* Pods_DragTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4EA9D145F462F73D899FB36E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				423FB0180040EBECF26ACF3D /* Pods-DragTest.debug.xcconfig */,
+				2B7538DE4B921012FDC7618E /* Pods-DragTest.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7FA41BCE51B40A29BEF07DE6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08298999F1469575C08532ED /* Pods_DragTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EC9FC4942AA11A03002E8625 = {
 			isa = PBXGroup;
 			children = (
 				EC9FC49F2AA11A03002E8625 /* DragTest */,
 				EC9FC49E2AA11A03002E8625 /* Products */,
+				4EA9D145F462F73D899FB36E /* Pods */,
+				7FA41BCE51B40A29BEF07DE6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,6 +90,7 @@
 				EC9FC4A92AA11A04002E8625 /* Assets.xcassets */,
 				EC9FC4AB2AA11A04002E8625 /* LaunchScreen.storyboard */,
 				EC9FC4AE2AA11A04002E8625 /* Info.plist */,
+				EC9FC4B42AA11A22002E8625 /* DragView.swift */,
 			);
 			path = DragTest;
 			sourceTree = "<group>";
@@ -74,9 +102,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC9FC4B12AA11A04002E8625 /* Build configuration list for PBXNativeTarget "DragTest" */;
 			buildPhases = (
+				2256B4F9A19B9C937AE359DC /* [CP] Check Pods Manifest.lock */,
 				EC9FC4992AA11A03002E8625 /* Sources */,
 				EC9FC49A2AA11A03002E8625 /* Frameworks */,
 				EC9FC49B2AA11A03002E8625 /* Resources */,
+				B1BD67E9EB934A436175966F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,6 +163,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2256B4F9A19B9C937AE359DC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DragTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B1BD67E9EB934A436175966F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DragTest/Pods-DragTest-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DragTest/Pods-DragTest-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DragTest/Pods-DragTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EC9FC4992AA11A03002E8625 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -140,6 +212,7 @@
 			files = (
 				EC9FC4A52AA11A03002E8625 /* ViewController.swift in Sources */,
 				EC9FC4A12AA11A03002E8625 /* AppDelegate.swift in Sources */,
+				EC9FC4B52AA11A22002E8625 /* DragView.swift in Sources */,
 				EC9FC4A32AA11A03002E8625 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +355,7 @@
 		};
 		EC9FC4B22AA11A04002E8625 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 423FB0180040EBECF26ACF3D /* Pods-DragTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +384,7 @@
 		};
 		EC9FC4B32AA11A04002E8625 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B7538DE4B921012FDC7618E /* Pods-DragTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
