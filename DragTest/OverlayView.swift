@@ -34,9 +34,10 @@ class OverlayView: UIView {
     }
     
     private func setupConstraints() {
-        dragView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+        dragView.snp.makeConstraints {[weak dragView] make in
+            make.left.right.equalToSuperview()
             make.height.equalTo(600).priority(.high)
+            dragView?.bottomConstraint = make.bottom.equalToSuperview().constraint
         }
     }
     
@@ -69,15 +70,16 @@ class OverlayView: UIView {
     }
     
     func hide(completion: (() -> Void)? = nil) {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.backgroundColor = UIColor.black.withAlphaComponent(0) // 투명하게
-                self.dragView.heightConstraint?.update(offset: 0)
-                self.layoutIfNeeded()
-            }) { _ in
-                self.removeFromSuperview()
-                completion?()
-            }
+        self.dragView.bottomConstraint?.update(offset: 600)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.backgroundColor = UIColor.black.withAlphaComponent(0) // 투명하게
+            self.layoutIfNeeded()
+        }) { _ in
+            self.dragView.heightConstraint?.update(offset: 0)
+            self.removeFromSuperview()
+            completion?()
         }
+    }
 }
 
 

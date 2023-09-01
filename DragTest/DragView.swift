@@ -12,6 +12,7 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     var onShouldHide: (() -> Void)?
     
     var heightConstraint: Constraint?
+    var bottomConstraint: Constraint?
     var lastContentOffset: CGFloat = 0
     
     let label: UILabel = {
@@ -57,7 +58,7 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
         label.snp.makeConstraints { make in
             make.top.leading.trailing.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalTo(50).priority(.medium)
         }
         
         tableView.snp.makeConstraints { make in
@@ -72,6 +73,18 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
 
         tableView.delegate = self
         tableView.dataSource = self
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        let maskPath = UIBezierPath(roundedRect: bounds,
+                                    byRoundingCorners: [.topLeft, .topRight],
+                                    cornerRadii: CGSize(width: 10, height: 10))
+        
+        let shape = CAShapeLayer()
+        shape.path = maskPath.cgPath
+        layer.mask = shape
     }
     
     // MARK: - UIScrollViewDelegate methods
@@ -127,14 +140,6 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     }
 
     func hide() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.heightConstraint?.update(offset: 0)
-            self.layoutIfNeeded()
-        }, completion: { _ in
-            if let overlay = self.superview as? OverlayView {
-                overlay.removeFromSuperview()
-            }
-        })
     }
     
     @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
