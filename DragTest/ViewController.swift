@@ -37,11 +37,15 @@ class ViewController: UIViewController {
             }
         }
         
-        @objc private func showDragView() {
-            UIView.animate(withDuration: 0.3) {
-                self.dragView.heightConstraint?.update(offset: 600)
-                self.view.layoutIfNeeded()
-            }
-        }
+    @objc private func showDragView() {
+        let overlay = OverlayView()
+          self.view.addSubview(overlay)
+          
+          overlay.snp.makeConstraints { make in
+              make.edges.equalToSuperview()
+          }
+          
+          overlay.show()
+    }
 }
 

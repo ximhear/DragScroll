@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+    var onShouldHide: (() -> Void)?
     
     var heightConstraint: Constraint?
     var lastContentOffset: CGFloat = 0
@@ -119,11 +120,21 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     }
     
     func show() {
-        heightConstraint?.update(offset: 600)
+        UIView.animate(withDuration: 0.3) {
+            self.heightConstraint?.update(offset: 600)
+            self.superview?.layoutIfNeeded()
+        }
     }
 
     func hide() {
-        heightConstraint?.update(offset: 0)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.heightConstraint?.update(offset: 0)
+            self.layoutIfNeeded()
+        }, completion: { _ in
+            if let overlay = self.superview as? OverlayView {
+                overlay.removeFromSuperview()
+            }
+        })
     }
     
     @objc func handlePanGesture(_ recognizer: UIPanGestureRecognizer) {
@@ -149,28 +160,16 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
                         // 사용자가 빠르게 스와이프했습니다.
                         if swipeVelocity < 0 {
                             // 스와이프 업
-                            UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 600)
-                                self.layoutIfNeeded()
-                            }
+                            restore()
                         } else {
                             // 스와이프 다운
-                            UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 0)
-                                self.layoutIfNeeded()
-                            }
+                            onShouldHide?()
                         }
                     } else {
                         if self.frame.height >= 300 {
-                            UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 600)
-                                self.layoutIfNeeded()
-                            }
+                            restore()
                         } else {
-                            UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 0)
-                                self.layoutIfNeeded()
-                            }
+                            onShouldHide?()
                         }
                     }
         default:
@@ -195,35 +194,27 @@ class DragView: UIView, UIScrollViewDelegate, UIGestureRecognizerDelegate {
                 if abs(velocity) > thresholdVelocity { // 빠르게 swipe down
                     if velocity < 0 {
                         // 스와이프 업
-                        UIView.animate(withDuration: 0.3) {
-                            self.heightConstraint?.update(offset: 600)
-                            self.layoutIfNeeded()
-                        }
+                        restore()
                     } else {
                         // 스와이프 다운
-                        UIView.animate(withDuration: 0.3) {
-                            self.heightConstraint?.update(offset: 0)
-                            self.layoutIfNeeded()
-                        }
+                        onShouldHide?()
                     }
                 }
                else if let heightConstraint = heightConstraint {
                     if heightConstraint.layoutConstraints.first?.constant ?? 0 < 300 {
-                            UIView.animate(withDuration: 0.3) {
-                                self.heightConstraint?.update(offset: 0)
-                                self.layoutIfNeeded()
-                            }
+                        onShouldHide?()
                     } else {
-                        UIView.animate(withDuration: 0.3) {
-                            self.heightConstraint?.update(offset: 600)
-                            self.layoutIfNeeded()
-                        }
+                        restore()
                     }
                 }
             default:
                 break
             }
         }
+    }
+    
+    private func restore() {
+        show()
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {

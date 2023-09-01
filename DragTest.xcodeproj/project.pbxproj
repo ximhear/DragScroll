@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		63B76C4E4B2F31E6ECFAB0AF /* Pods_DragTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08298999F1469575C08532ED /* Pods_DragTest.framework */; };
+		EC5EE5A82AA166BA00CAEC49 /* OverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5EE5A72AA166BA00CAEC49 /* OverlayView.swift */; };
 		EC9FC4A12AA11A03002E8625 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4A02AA11A03002E8625 /* AppDelegate.swift */; };
 		EC9FC4A32AA11A03002E8625 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4A22AA11A03002E8625 /* SceneDelegate.swift */; };
 		EC9FC4A52AA11A03002E8625 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9FC4A42AA11A03002E8625 /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 		08298999F1469575C08532ED /* Pods_DragTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DragTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B7538DE4B921012FDC7618E /* Pods-DragTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTest.release.xcconfig"; path = "Target Support Files/Pods-DragTest/Pods-DragTest.release.xcconfig"; sourceTree = "<group>"; };
 		423FB0180040EBECF26ACF3D /* Pods-DragTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DragTest.debug.xcconfig"; path = "Target Support Files/Pods-DragTest/Pods-DragTest.debug.xcconfig"; sourceTree = "<group>"; };
+		EC5EE5A72AA166BA00CAEC49 /* OverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayView.swift; sourceTree = "<group>"; };
 		EC9FC49D2AA11A03002E8625 /* DragTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DragTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9FC4A02AA11A03002E8625 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC9FC4A22AA11A03002E8625 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,7 +52,6 @@
 				423FB0180040EBECF26ACF3D /* Pods-DragTest.debug.xcconfig */,
 				2B7538DE4B921012FDC7618E /* Pods-DragTest.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -91,6 +92,7 @@
 				EC9FC4AB2AA11A04002E8625 /* LaunchScreen.storyboard */,
 				EC9FC4AE2AA11A04002E8625 /* Info.plist */,
 				EC9FC4B42AA11A22002E8625 /* DragView.swift */,
+				EC5EE5A72AA166BA00CAEC49 /* OverlayView.swift */,
 			);
 			path = DragTest;
 			sourceTree = "<group>";
@@ -214,6 +216,7 @@
 				EC9FC4A12AA11A03002E8625 /* AppDelegate.swift in Sources */,
 				EC9FC4B52AA11A22002E8625 /* DragView.swift in Sources */,
 				EC9FC4A32AA11A03002E8625 /* SceneDelegate.swift in Sources */,
+				EC5EE5A82AA166BA00CAEC49 /* OverlayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +372,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -398,6 +402,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
